@@ -1,4 +1,5 @@
-import Car from "../src/Car.js";
+import Car from "../src/Car";
+import { CAR_NAME_ERRORS } from "../src/constants/errorMessage";
 
 describe("자동차", () => {
   describe("기능 테스트", () => {
@@ -37,16 +38,16 @@ describe("자동차", () => {
 
   describe("예외 테스트", () => {
     test.each([
-      [null, "자동차 이름들은 문자열만 입력 가능합니다."],
-      [undefined, "자동차 이름들은 문자열만 입력 가능합니다."],
-      [["pobi", "woni", "jun"], "자동차 이름들은 문자열만 입력 가능합니다."],
-      [{ name: "pobi" }, "자동차 이름들은 문자열만 입력 가능합니다."],
-      [123, "자동차 이름들은 문자열만 입력 가능합니다."],
-      [true, "자동차 이름들은 문자열만 입력 가능합니다."],
-      ["", "자동차 이름은 최소 1글자 이상만 가능합니다."],
-      ["     ", "자동차 이름은 최소 1글자 이상만 가능합니다."],
-      ["123456", "자동차 이름은 5글자 이하만 가능합니다."],
-      ["이것은 자동차 이름입니다.", "자동차 이름은 5글자 이하만 가능합니다."],
+      [null, CAR_NAME_ERRORS.NOT_STRING],
+      [undefined, CAR_NAME_ERRORS.NOT_STRING],
+      [["pobi", "woni", "jun"], CAR_NAME_ERRORS.NOT_STRING],
+      [{ name: "pobi" }, CAR_NAME_ERRORS.NOT_STRING],
+      [123, CAR_NAME_ERRORS.NOT_STRING],
+      [true, CAR_NAME_ERRORS.NOT_STRING],
+      ["", CAR_NAME_ERRORS.NOT_EMPTY],
+      ["     ", CAR_NAME_ERRORS.NOT_EMPTY],
+      ["123456", CAR_NAME_ERRORS.NOT_MAX_LENGTH_FIVE],
+      ["이것은 자동차 이름입니다.", CAR_NAME_ERRORS.NOT_MAX_LENGTH_FIVE],
     ])(
       "잘못된 자동차 이름 `%s`을(를) 입력하면 `%s`에러를 반환한다.",
       (inputName, expected) => {
