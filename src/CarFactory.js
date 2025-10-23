@@ -1,0 +1,7 @@
+import Car from "./Car";
+
+export class CarFactory {
+  static createCar(name) {
+    return new Car(name);
+  }
+}
