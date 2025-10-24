@@ -1,4 +1,5 @@
 import Car from "../src/Car";
+import { SUBJECT } from "../src/constants/constants";
 import { CAR_NAME_ERRORS } from "../src/constants/errorMessage";
 
 describe("자동차", () => {
@@ -37,21 +38,34 @@ describe("자동차", () => {
   });
 
   describe("예외 테스트", () => {
+    const CAR_NAME_ERROR_NOT_STRING = `${SUBJECT.CAR_NAME} ${CAR_NAME_ERRORS.NOT_STRING}`;
+    const CAR_NAME_ERROR_NOT_EMPTY = `${SUBJECT.CAR_NAME} ${CAR_NAME_ERRORS.NOT_EMPTY}`;
+
     test.each([
-      [null, CAR_NAME_ERRORS.NOT_STRING],
-      [undefined, CAR_NAME_ERRORS.NOT_STRING],
-      [["pobi", "woni", "jun"], CAR_NAME_ERRORS.NOT_STRING],
-      [{ name: "pobi" }, CAR_NAME_ERRORS.NOT_STRING],
-      [123, CAR_NAME_ERRORS.NOT_STRING],
-      [true, CAR_NAME_ERRORS.NOT_STRING],
-      ["", CAR_NAME_ERRORS.NOT_EMPTY],
-      ["     ", CAR_NAME_ERRORS.NOT_EMPTY],
-      ["123456", CAR_NAME_ERRORS.NOT_MAX_LENGTH_FIVE],
-      ["이것은 자동차 이름입니다.", CAR_NAME_ERRORS.NOT_MAX_LENGTH_FIVE],
+      [null],
+      [undefined],
+      [["pobi", "woni", "jun"]],
+      [{ name: "pobi" }],
+      [123],
+      [true],
     ])(
-      "잘못된 자동차 이름 `%s`을(를) 입력하면 `%s`에러를 반환한다.",
-      (inputName, expected) => {
-        expect(() => new Car(inputName)).toThrow(expected);
+      `잘못된 자동차 이름 "%s"을(를) 입력하면 ${CAR_NAME_ERROR_NOT_STRING}에러를 반환한다.`,
+      (name) => expect(() => new Car(name)).toThrow(CAR_NAME_ERROR_NOT_STRING)
+    );
+
+    test.each([[""], ["     "]])(
+      `잘못된 자동차 이름 "%s"을(를) 입력하면 ${CAR_NAME_ERROR_NOT_EMPTY}에러를 반환한다.`,
+      (name) => {
+        expect(() => new Car(name)).toThrow(CAR_NAME_ERROR_NOT_EMPTY);
+      }
+    );
+
+    test.each([["123456"], ["이것은 자동차 이름입니다."]])(
+      `잘못된 자동차 이름 "%s"을(를) 입력하면 ${CAR_NAME_ERRORS.NOT_MAX_LENGTH_FIVE}에러를 반환한다.`,
+      (name) => {
+        expect(() => new Car(name)).toThrow(
+          CAR_NAME_ERRORS.NOT_MAX_LENGTH_FIVE
+        );
       }
     );
   });
