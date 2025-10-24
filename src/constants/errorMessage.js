@@ -6,5 +6,5 @@ export const CAR_NAME_ERRORS = {
 };
 export const LAPS_ERROR = {
   NOT_NUMBER: "시도할 횟수는 숫자만 입력 가능합니다.",
-  POSITIVE_NUMBER: "시도할 횟수는 1 이상의 양수만 입력 가능합니다.",
+  NOT_POSITIVE_NUMBER: "시도할 횟수는 1 이상의 양수만 입력 가능합니다.",
 };
