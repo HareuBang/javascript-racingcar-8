@@ -1,4 +1,6 @@
 import { Race } from "../src/Race";
+import { SUBJECT } from "../src/constants/constants";
+import { CAR_NAME_ERRORS, LAPS_ERROR } from "../src/constants/errorMessage";
 
 describe("Race", () => {
   let mockCarFactory;
@@ -21,30 +23,53 @@ describe("Race", () => {
   });
 
   describe("예외 테스트", () => {
+    const CAR_NAMES_ERROR_NOT_STRING = `${SUBJECT.CAR_NAMES} ${CAR_NAME_ERRORS.NOT_STRING}`;
+    const CAR_NAMES_ERROR_NOT_EMPTY = `${SUBJECT.CAR_NAMES} ${CAR_NAME_ERRORS.NOT_EMPTY}`;
+
     test.each([
-      [null, "1", "문자열로만 입력 가능합니다."],
-      [["pobi", "woni", "jun"], "5", "문자열로만 입력 가능합니다."],
-      ["", "2", "최소 1글자 이상만 가능합니다."],
-      ["    ", "4", "최소 1글자 이상만 가능합니다."],
+      [null],
+      [undefined],
+      [["pobi", "woni", "jun"]],
+      [{ name: "pobi" }],
+      [123],
+      [true],
     ])(
-      "유효하지 않은 자동차 이름 `%s`을(를) 입력하면 %s 에러를 반환한다.",
-      (name, laps, expected) => {
+      `잘못된 자동차 이름 "%s"을(를) 입력하면 ${CAR_NAMES_ERROR_NOT_STRING}에러를 반환한다.`,
+      (name) => {
         const race = new Race(mockCarFactory);
-        expect(() => race.prepare(name, laps)).toThrow(expected);
+        expect(() => race.prepare(name, "  1 ")).toThrow(
+          CAR_NAMES_ERROR_NOT_STRING
+        );
       }
     );
 
-    test.each([
-      [[1], "시도할 횟수는 숫자만 입력 가능합니다."],
-      [undefined, "시도할 횟수는 숫자만 입력 가능합니다."],
-      ["-3", "시도할 횟수는 양수만 입력 가능합니다."],
-      ["0", "시도할 횟수는 양수만 입력 가능합니다."],
-      ["3.14", "시도할 횟수는 양수만 입력 가능합니다."],
-    ])(
-      "유효하지 않은 자동차 이름 `%s`을(를) 입력하면 %s 에러를 반환한다.",
-      (laps, expected) => {
+    test.each([[""], ["     "]])(
+      `자동차 이름에 빈 또는 공백 "%s"을(를) 입력하면 ${CAR_NAMES_ERROR_NOT_EMPTY}에러를 반환한다.`,
+      (name) => {
         const race = new Race(mockCarFactory);
-        expect(() => race.prepare("pobi,woni,jun", laps)).toThrow(expected);
+        expect(() => race.prepare(name, "5")).toThrow(
+          CAR_NAMES_ERROR_NOT_EMPTY
+        );
+      }
+    );
+
+    test.each([[[1]], [null], ["undefined"], ["3 5"]])(
+      `시도할 횟수에 유효하지 않은 "%s"을(를) 입력하면 ${LAPS_ERROR.NOT_NUMBER} 에러를 반환한다.`,
+      (laps) => {
+        const race = new Race(mockCarFactory);
+        expect(() => race.prepare("pobi,woni,jun", laps)).toThrow(
+          LAPS_ERROR.NOT_NUMBER
+        );
+      }
+    );
+
+    test.each([["-3"], ["0"], ["3.14"]])(
+      `시도할 횟수에 양수가 아닌 "%s"을(를) 입력하면 ${LAPS_ERROR.NOT_POSITIVE_NUMBER} 에러를 반환한다.`,
+      (laps) => {
+        const race = new Race(mockCarFactory);
+        expect(() => race.prepare("pobi,woni,jun", laps)).toThrow(
+          LAPS_ERROR.NOT_POSITIVE_NUMBER
+        );
       }
     );
   });
