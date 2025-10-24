@@ -1,4 +1,6 @@
-import CarFactory from "../src/CarFactory.js";
+import { CarFactory } from "../src/CarFactory.js";
+import { SUBJECT } from "../src/constants/constants";
+import { CAR_NAME_ERRORS } from "../src/constants/errorMessage";
 
 describe("CarFactory를 통해 생성된 Car 동작 확인", () => {
   describe("자동차 생성 기능 테스트", () => {
@@ -34,21 +36,39 @@ describe("CarFactory를 통해 생성된 Car 동작 확인", () => {
   });
 
   describe("예외 테스트", () => {
+    const CAR_NAME_ERROR_NOT_STRING = `${SUBJECT.CAR_NAME} ${CAR_NAME_ERRORS.NOT_STRING}`;
+    const CAR_NAME_ERROR_NOT_EMPTY = `${SUBJECT.CAR_NAME} ${CAR_NAME_ERRORS.NOT_EMPTY}`;
+
     test.each([
-      [null, "자동차 이름들은 문자열만 입력 가능합니다."],
-      [undefined, "자동차 이름들은 문자열만 입력 가능합니다."],
-      [["pobi", "woni", "jun"], "자동차 이름들은 문자열만 입력 가능합니다."],
-      [{ name: "pobi" }, "자동차 이름들은 문자열만 입력 가능합니다."],
-      [123, "자동차 이름들은 문자열만 입력 가능합니다."],
-      [true, "자동차 이름들은 문자열만 입력 가능합니다."],
-      ["", "자동차 이름은 최소 1글자 이상만 가능합니다."],
-      ["     ", "자동차 이름은 최소 1글자 이상만 가능합니다."],
-      ["123456", "자동차 이름은 5글자 이하만 가능합니다."],
-      ["이것은 자동차 이름입니다.", "자동차 이름은 5글자 이하만 가능합니다."],
+      [null],
+      [undefined],
+      [["pobi", "woni", "jun"]],
+      [{ name: "pobi" }],
+      [123],
+      [true],
     ])(
-      "잘못된 자동차 이름 `%s`을(를) 입력하면 `%s` 에러 메시지를 반환한다.",
-      (inputName, expected) => {
-        expect(() => CarFactory.createCar(inputName)).toThrow(expected);
+      `잘못된 자동차 이름 "%s"을(를) 입력하면 ${CAR_NAME_ERROR_NOT_STRING}에러를 반환한다.`,
+      (name) =>
+        expect(() => CarFactory.createCar(name)).toThrow(
+          CAR_NAME_ERROR_NOT_STRING
+        )
+    );
+
+    test.each([[""], ["     "]])(
+      `잘못된 자동차 이름 "%s"을(를) 입력하면 ${CAR_NAME_ERROR_NOT_EMPTY}에러를 반환한다.`,
+      (name) => {
+        expect(() => CarFactory.createCar(name)).toThrow(
+          CAR_NAME_ERROR_NOT_EMPTY
+        );
+      }
+    );
+
+    test.each([["123456"], ["이것은 자동차 이름입니다."]])(
+      `잘못된 자동차 이름 "%s"을(를) 입력하면 ${CAR_NAME_ERRORS.NOT_MAX_LENGTH_FIVE}에러를 반환한다.`,
+      (name) => {
+        expect(() => CarFactory.createCar(name)).toThrow(
+          CAR_NAME_ERRORS.NOT_MAX_LENGTH_FIVE
+        );
       }
     );
   });
