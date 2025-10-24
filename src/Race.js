@@ -1,3 +1,6 @@
+import { validateInputString } from "./validators/validateInputString";
+import { CAR_NAME, VALID_TYPE, LAPS, SUBJECT } from "./constants/constants";
+import { LAPS_ERROR } from "./constants/errorMessage";
 export class Race {
   #participateCars;
   #laps;
@@ -7,38 +10,31 @@ export class Race {
     this.#onCarFactory = onCarFactory;
   }
 
-  #validCarNames(inputCarNames) {
-    if (typeof inputCarNames !== "string")
-      throw new Error("자동차 이름들은 문자열로만 입력 가능합니다.");
-    if (inputCarNames.trim().length === 0)
-      throw new Error("자동차 이름은 최소 1글자 이상만 가능합니다.");
-  }
-
-  #validLaps(inputLaps) {
+  #validateInputLaps(inputLaps) {
     if (
-      inputLaps === null ||
-      inputLaps === undefined ||
-      inputLaps === "" ||
-      typeof inputLaps === "boolean" ||
-      typeof inputLaps !== "string" ||
+      (typeof inputLaps !== VALID_TYPE.NUMBER &&
+        typeof inputLaps !== VALID_TYPE.STRING) ||
       !Number.isFinite(Number(inputLaps)) // NaN, Infinity, -Infinity 검증
     ) {
-      throw new Error("시도할 횟수는 숫자만 입력 가능합니다.");
+      throw new Error(LAPS_ERROR.NOT_NUMBER);
     }
 
-    if (Number(inputLaps) < 1)
-      throw new Error("시도할 횟수는 양수만 입력 가능합니다.");
+    if (
+      Number(inputLaps) < LAPS.MIN_NUMBER_ONE ||
+      !Number.isInteger(Number(inputLaps)) // 소수점 검증
+    )
+      throw new Error(LAPS_ERROR.NOT_POSITIVE_NUMBER);
   }
 
   #prepareCars(inputCarNames) {
     return inputCarNames
-      .split(",")
+      .split(CAR_NAME.SEPARATOR)
       .map((carName) => this.#onCarFactory(carName));
   }
 
   prepare(inputCarNames, inputLaps) {
-    this.#validCarNames(inputCarNames);
-    this.#validLaps(inputLaps);
+    validateInputString(inputCarNames, SUBJECT.CAR_NAMES);
+    this.#validateInputLaps(inputLaps);
 
     this.#participateCars = this.#prepareCars(inputCarNames);
     this.#laps = Number(inputLaps);
