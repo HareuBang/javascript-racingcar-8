@@ -1,8 +1,19 @@
-export const CAR = {
-  INITIAL_DISTANCE_ZERO: 0,
-  NAME_TYPE_STRING: "string",
-  NAME_EMPTY: 0,
-  NAME_ALL_SPACE_REGEXP: /\s{5}/,
-  NAME_MAX_LENGTH_FIVE: 5,
-  DISTANCE_INCREMENT_ONE: 1,
+export const CAR_DISTANCE = {
+  INITIAL_ZERO: 0,
+  INCREMENT_ONE: 1,
+};
+
+export const CAR_NAME = {
+  MAX_LENGTH_FIVE: 5,
+  SEPARATOR: ",",
+};
+
+export const VALID_TYPE = {
+  STRING: "string",
+  EMPTY: "",
+  NUMBER: "number",
+};
+
+export const LAPS = {
+  MIN_NUMBER_ONE: 1,
 };
