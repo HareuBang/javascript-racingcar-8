@@ -11,8 +11,10 @@ class RaceTrack {
 
   #formatRaceProgress() {
     const progress = this.#race.getRaceProgress();
-    return progress.map(
-      ({ name, distance }) => `${name} : ${"- ".repeat(distance)}`
+    return progress.reduce(
+      (formattedString, { name, distance }) =>
+        formattedString + `${name} : ${"- ".repeat(distance)}\n`,
+      ""
     );
   }
 
