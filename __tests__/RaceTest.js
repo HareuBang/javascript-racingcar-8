@@ -96,6 +96,39 @@ describe("Race", () => {
         { name: "jun", distance: 0 },
       ]);
     });
+
+    test("determineWinner - 가장 멀리 전진한 우승자들을 식별하고 반환하는 지 확인한다.", () => {
+      const mockCarFactory = jest.fn((name) => {
+        let distance = 0;
+
+        return {
+          getName: () => name,
+          getDistance: () => distance,
+          forward: () => distance++,
+        };
+      });
+
+      const race = new Race(mockCarFactory);
+      race.prepare("pobi,woni,jun", "4");
+
+      const cars = mockCarFactory.mock.results.map(({ value }) => value);
+
+      // pobi 전진 3번
+      cars[0].forward();
+      cars[0].forward();
+      cars[0].forward();
+
+      // woni 전진 3번
+      cars[1].forward();
+      cars[1].forward();
+
+      // jun 전진 3번
+      cars[2].forward();
+      cars[2].forward();
+      cars[2].forward();
+
+      expect(race.determineWinner()).toEqual(["pobi", "jun"]);
+    });
   });
 
   describe("예외 테스트", () => {
