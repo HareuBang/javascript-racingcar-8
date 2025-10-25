@@ -20,6 +20,18 @@ describe("Race", () => {
       expect(mockCarFactory).toHaveBeenCalledWith(" ㅠ ㅠ ");
       expect(mockCarFactory).toHaveBeenCalledWith("jun");
     });
+
+    test("주어진 laps만큼 runNextLaps가 설정된 laps만큼 호출되는 지 확인", () => {
+      const race = new Race(mockCarFactory);
+      race.prepare("pobi,woni,jun", "3");
+
+      let count = 0;
+      while (race.runNextLaps()) {
+        count += 1;
+      }
+
+      expect(count).toBe(3);
+    });
   });
 
   describe("예외 테스트", () => {
