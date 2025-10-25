@@ -1,4 +1,4 @@
-import { CarFactory } from "../src/CarFactory.js";
+import CarFactory from "../src/CarFactory.js";
 import { SUBJECT } from "../src/constants/constants";
 import { CAR_NAME_ERRORS } from "../src/constants/errorMessage";
 

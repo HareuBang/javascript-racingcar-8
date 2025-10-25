@@ -9,5 +9,3 @@ export const PRINT = {
   NEWLINE_SEPARATOR: "\n",
   WINNER_PREFIX: "최종 우승자 : ",
 };
-
-export { PROMPT, PRINT };

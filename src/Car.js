@@ -1,4 +1,4 @@
-import { validateInputString } from "./validators/validateInputString";
+import validateInputString from "./validators/validateInputString";
 import { CAR_DISTANCE, CAR_NAME } from "./constants/constants";
 import { CAR_NAME_ERRORS } from "./constants/errorMessage";
 class Car {

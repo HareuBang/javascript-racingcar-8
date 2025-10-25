@@ -1,6 +1,6 @@
 import Car from "./Car";
 import { CAR } from "./constants/constants";
-export class CarFactory {
+class CarFactory {
   static #createCar(name) {
     return new Car(name);
   }
@@ -13,3 +13,5 @@ export class CarFactory {
     return carType[type];
   }
 }
+
+export default CarFactory;

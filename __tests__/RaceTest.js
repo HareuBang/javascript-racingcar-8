@@ -1,4 +1,4 @@
-import { Race } from "../src/Race";
+import Race from "../src/Race";
 import { SUBJECT } from "../src/constants/constants";
 import { CAR_NAME_ERRORS, LAPS_ERROR } from "../src/constants/errorMessage";
 

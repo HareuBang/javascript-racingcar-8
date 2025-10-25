@@ -1,4 +1,4 @@
-export class RaceTrack {
+class RaceTrack {
   #input;
   #race;
   #output;
@@ -46,3 +46,5 @@ export class RaceTrack {
     this.#renderWinner();
   }
 }
+
+export default RaceTrack;

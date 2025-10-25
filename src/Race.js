@@ -1,8 +1,8 @@
-import { validateInputString } from "./validators/validateInputString";
+import validateInputString from "./validators/validateInputString";
 import { VALID_TYPE, LAPS, SUBJECT, CAR } from "./constants/constants";
 import { LAPS_ERROR } from "./constants/errorMessage";
-import { randomPickNumber } from "./utils/randomPickNumber";
-export class Race {
+import randomPickNumber from "./utils/randomPickNumber";
+class Race {
   #participateCars;
   #laps;
   #onCarFactory;
@@ -72,3 +72,5 @@ export class Race {
     }, []);
   }
 }
+
+export default Race;
