@@ -5,12 +5,12 @@ class CarFactory {
     return new Car(name);
   }
 
-  static create(type = CAR.DEFAULT_TYPE) {
+  static create(name, type = CAR.DEFAULT_TYPE) {
     const carType = {
-      normal: this.#createCar(),
+      normal: CarFactory.#createCar,
     };
 
-    return carType[type];
+    return carType[type](name);
   }
 }
 
