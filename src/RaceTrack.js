@@ -1,3 +1,4 @@
+import { FORMAT_RACE_PROGRESS, WINNER_SEPARATOR } from "./constants/constants";
 class RaceTrack {
   #input;
   #race;
@@ -11,9 +12,15 @@ class RaceTrack {
 
   #formatRaceProgress() {
     const progress = this.#race.getRaceProgress();
+    const { NAME_DISTANCE_SEPARATOR, DISTANCE_MARK, NEWLINE_SEPARATOR } =
+      FORMAT_RACE_PROGRESS;
+
     return progress.reduce(
       (formattedString, { name, distance }) =>
-        formattedString + `${name} : ${"- ".repeat(distance)}\n`,
+        formattedString +
+        `${name} ${NAME_DISTANCE_SEPARATOR} ${DISTANCE_MARK.repeat(
+          distance
+        )}${NEWLINE_SEPARATOR}`,
       ""
     );
   }
@@ -24,7 +31,7 @@ class RaceTrack {
   }
 
   #renderWinner() {
-    const winner = this.#race.determineWinner().join(", ");
+    const winner = this.#race.determineWinner().join(WINNER_SEPARATOR);
     this.#output.printWinner(winner);
   }
 

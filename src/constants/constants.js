@@ -29,3 +29,11 @@ export const CAR = {
   FORWARD_MIN_NUMBER_FOUR: 4,
   DEFAULT_TYPE: "normal",
 };
+
+export const FORMAT_RACE_PROGRESS = {
+  NAME_DISTANCE_SEPARATOR: " : ",
+  DISTANCE_MARK: "- ",
+  NEWLINE_SEPARATOR: "\n",
+};
+
+export const WINNER_SEPARATOR = ", ";
