@@ -1,5 +1,5 @@
 import { validateInputString } from "./validators/validateInputString";
-import { CAR_NAME, VALID_TYPE, LAPS, SUBJECT } from "./constants/constants";
+import { VALID_TYPE, LAPS, SUBJECT, CAR } from "./constants/constants";
 import { LAPS_ERROR } from "./constants/errorMessage";
 import { randomPickNumber } from "./utils/randomPickNumber";
 export class Race {
@@ -31,7 +31,7 @@ export class Race {
 
   #prepareCars(inputCarNames) {
     return inputCarNames
-      .split(CAR_NAME.SEPARATOR)
+      .split(CAR.NAME.SEPARATOR)
       .map((carName) => this.#onCarFactory(carName));
   }
 
@@ -44,13 +44,14 @@ export class Race {
   }
 
   runNextLaps() {
-    this.#laps -= 1;
-    return this.#laps >= 0;
+    this.#laps -= LAPS.DECREASE_ONE;
+    return this.#laps >= LAPS.LAST_CONTINUE_ZERO;
   }
 
   start() {
     this.#participateCars.forEach((car) => {
-      if (this.#onRandomPickNumber() >= 4) car.forward();
+      if (this.#onRandomPickNumber() >= CAR.FORWARD_MIN_NUMBER_FOUR)
+        car.forward();
     });
   }
 
