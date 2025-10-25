@@ -21,7 +21,7 @@ describe("Race", () => {
       expect(mockCarFactory).toHaveBeenCalledWith("jun");
     });
 
-    test("주어진 laps만큼 runNextLaps가 설정된 laps만큼 호출되는 지 확인", () => {
+    test("runNextLaps - 주어진 laps만큼 runNextLaps가 설정된 laps만큼 호출되는 지 확인", () => {
       const race = new Race(mockCarFactory);
       race.prepare("pobi,woni,jun", "3");
 
@@ -33,7 +33,7 @@ describe("Race", () => {
       expect(count).toBe(3);
     });
 
-    test("경주 시작 - 랜덤 값이 4 이상일 경우 자동차가 전진하는 지 확인한다.", () => {
+    test("start(경주 시작) - 랜덤 값이 4 이상일 경우 자동차가 전진하는 지 확인한다.", () => {
       const mockCarFactory = jest.fn((name) => {
         let distance = 0;
 
