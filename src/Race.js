@@ -1,13 +1,16 @@
 import { validateInputString } from "./validators/validateInputString";
 import { CAR_NAME, VALID_TYPE, LAPS, SUBJECT } from "./constants/constants";
 import { LAPS_ERROR } from "./constants/errorMessage";
+import { randomPickNumber } from "./utils/randomPickNumber";
 export class Race {
   #participateCars;
   #laps;
   #onCarFactory;
+  #onRandomPickNumber;
 
-  constructor(onCarFactory) {
+  constructor(onCarFactory, onRandomPickNumber = randomPickNumber) {
     this.#onCarFactory = onCarFactory;
+    this.#onRandomPickNumber = onRandomPickNumber;
   }
 
   #validateInputLaps(inputLaps) {
@@ -43,5 +46,11 @@ export class Race {
   runNextLaps() {
     this.#laps -= 1;
     return this.#laps >= 0;
+  }
+
+  start() {
+    this.#participateCars.forEach((car) => {
+      if (this.#onRandomPickNumber() >= 4) car.forward();
+    });
   }
 }
