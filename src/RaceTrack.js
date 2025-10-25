@@ -27,8 +27,8 @@ class RaceTrack {
   }
 
   async race() {
-    const inputCarNames = this.#input.readCarNames();
-    const inputRaceLaps = this.#input.readRaceLaps();
+    const inputCarNames = await this.#input.readCarNames();
+    const inputRaceLaps = await this.#input.readRaceLaps();
 
     try {
       this.#race.prepare(inputCarNames, inputRaceLaps);
