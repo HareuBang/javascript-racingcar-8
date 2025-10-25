@@ -39,4 +39,9 @@ export class Race {
     this.#participateCars = this.#prepareCars(inputCarNames);
     this.#laps = Number(inputLaps);
   }
+
+  runNextLaps() {
+    this.#laps -= 1;
+    return this.#laps >= 0;
+  }
 }
