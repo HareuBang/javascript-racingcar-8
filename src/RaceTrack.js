@@ -1,4 +1,7 @@
-import { FORMAT_RACE_PROGRESS, WINNER_SEPARATOR } from "./constants/constants";
+import {
+  FORMAT_RACE_PROGRESS,
+  WINNER_SEPARATOR,
+} from "./constants/constants.js";
 class RaceTrack {
   #input;
   #race;
