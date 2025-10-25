@@ -63,6 +63,39 @@ describe("Race", () => {
       expect(cars[2].getDistance()).toBe(0);
       expect(cars[3].getDistance()).toBe(1);
     });
+
+    test("getRaceProgress - 경주 상태를 정상적으로 반환하는 지 확인한다.", () => {
+      const mockCarFactory = jest.fn((name) => {
+        let distance = 0;
+
+        return {
+          getName: () => name,
+          getDistance: () => distance,
+          forward: () => distance++,
+        };
+      });
+
+      const race = new Race(mockCarFactory);
+      race.prepare("pobi,woni,jun", "3");
+
+      const cars = mockCarFactory.mock.results.map(({ value }) => value);
+
+      // pobi 전진 1번
+      cars[0].forward();
+
+      // woni 전진 3번
+      cars[1].forward();
+      cars[1].forward();
+      cars[1].forward();
+
+      // jun 전진 0번
+
+      expect(race.getRaceProgress()).toEqual([
+        { name: "pobi", distance: 1 },
+        { name: "woni", distance: 3 },
+        { name: "jun", distance: 0 },
+      ]);
+    });
   });
 
   describe("예외 테스트", () => {
