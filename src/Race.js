@@ -60,4 +60,14 @@ export class Race {
       distance: car.getDistance(),
     }));
   }
+
+  determineWinner() {
+    const carDistances = this.#participateCars.map((car) => car.getDistance());
+    const farthestDistance = Math.max(...carDistances);
+
+    return this.#participateCars.reduce((winners, car) => {
+      if (car.getDistance() === farthestDistance) winners.push(car.getName());
+      return winners;
+    }, []);
+  }
 }
