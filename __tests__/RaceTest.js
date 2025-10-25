@@ -32,6 +32,37 @@ describe("Race", () => {
 
       expect(count).toBe(3);
     });
+
+    test("경주 시작 - 랜덤 값이 4 이상일 경우 자동차가 전진하는 지 확인한다.", () => {
+      const mockCarFactory = jest.fn((name) => {
+        let distance = 0;
+
+        return {
+          getName: () => name,
+          getDistance: () => distance,
+          forward: () => distance++,
+        };
+      });
+
+      const mockRandomPickNumber = jest
+        .fn()
+        .mockReturnValueOnce(3) // 정지
+        .mockReturnValueOnce(4) // 전진
+        .mockReturnValueOnce(0) // 정지
+        .mockReturnValueOnce(9); // 전진
+
+      const race = new Race(mockCarFactory, mockRandomPickNumber);
+      race.prepare("pobi,woni,jun,👍👍", "1");
+
+      const cars = mockCarFactory.mock.results.map(({ value }) => value);
+
+      race.start();
+
+      expect(cars[0].getDistance()).toBe(0);
+      expect(cars[1].getDistance()).toBe(1);
+      expect(cars[2].getDistance()).toBe(0);
+      expect(cars[3].getDistance()).toBe(1);
+    });
   });
 
   describe("예외 테스트", () => {
