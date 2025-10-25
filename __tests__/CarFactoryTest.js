@@ -1,6 +1,6 @@
 import CarFactory from "../src/CarFactory.js";
-import { SUBJECT } from "../src/constants/constants";
-import { CAR_NAME_ERRORS } from "../src/constants/errorMessage";
+import { SUBJECT } from "../src/constants/constants.js";
+import { CAR_NAME_ERRORS } from "../src/constants/errorMessage.js";
 
 describe("CarFactory를 통해 생성된 Car 동작 확인", () => {
   describe("자동차 생성 기능 테스트", () => {

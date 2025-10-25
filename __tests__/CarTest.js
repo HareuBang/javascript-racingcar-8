@@ -1,6 +1,6 @@
-import Car from "../src/Car";
-import { SUBJECT } from "../src/constants/constants";
-import { CAR_NAME_ERRORS } from "../src/constants/errorMessage";
+import Car from "../src/Car.js";
+import { SUBJECT } from "../src/constants/constants.js";
+import { CAR_NAME_ERRORS } from "../src/constants/errorMessage.js";
 
 describe("자동차", () => {
   describe("기능 테스트", () => {

@@ -1,7 +1,7 @@
-import validateInputString from "./validators/validateInputString";
-import { VALID_TYPE, LAPS, SUBJECT, CAR } from "./constants/constants";
-import { LAPS_ERROR } from "./constants/errorMessage";
-import randomPickNumber from "./utils/randomPickNumber";
+import validateInputString from "./validators/validateInputString.js";
+import { VALID_TYPE, LAPS, SUBJECT, CAR } from "./constants/constants.js";
+import { LAPS_ERROR } from "./constants/errorMessage.js";
+import randomPickNumber from "./utils/randomPickNumber.js";
 class Race {
   #participateCars;
   #laps;

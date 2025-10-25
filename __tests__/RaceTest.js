@@ -1,6 +1,6 @@
-import Race from "../src/Race";
-import { SUBJECT } from "../src/constants/constants";
-import { CAR_NAME_ERRORS, LAPS_ERROR } from "../src/constants/errorMessage";
+import Race from "../src/Race.js";
+import { SUBJECT } from "../src/constants/constants.js";
+import { CAR_NAME_ERRORS, LAPS_ERROR } from "../src/constants/errorMessage.js";
 
 describe("Race", () => {
   let mockCarFactory;

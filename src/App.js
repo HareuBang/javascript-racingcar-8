@@ -1,8 +1,8 @@
-import inputView from "./console/inputView";
-import outputView from "./console/outputView";
-import CarFactory from "./CarFactory";
-import Race from "./Race";
-import RaceTrack from "./RaceTrack";
+import inputView from "./console/inputView.js";
+import outputView from "./console/outputView.js";
+import CarFactory from "./CarFactory.js";
+import Race from "./Race.js";
+import RaceTrack from "./RaceTrack.js";
 class App {
   async run() {
     const race = new Race(CarFactory.create);

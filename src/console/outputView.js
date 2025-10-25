@@ -1,5 +1,5 @@
 import { MissionUtils } from "@woowacourse/mission-utils";
-import { PRINT } from "../constants/message";
+import { PRINT } from "../constants/message.js";
 
 const print = (message) => MissionUtils.Console.print(message);
 
