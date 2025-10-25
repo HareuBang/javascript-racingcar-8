@@ -1,15 +1,12 @@
 import { MissionUtils } from "@woowacourse/mission-utils";
-import {
-  PARTICIPANT_CAR_NAMES_PROMPT,
-  RACE_LAPS_PROMPT,
-} from "../constants/message.js";
+import { PROMPT } from "../constants/message.js";
 
 const readLineAsync = async (question) =>
   await MissionUtils.Console.readLineAsync(question);
 
 const inputView = {
-  readCarNames: async () => await readLineAsync(PARTICIPANT_CAR_NAMES_PROMPT),
-  readRaceLaps: async () => await readLineAsync(RACE_LAPS_PROMPT),
+  readCarNames: async () => await readLineAsync(PROMPT.PARTICIPANT_CAR_NAMES),
+  readRaceLaps: async () => await readLineAsync(PROMPT.RACE_LAPS),
 };
 
 export default inputView;
