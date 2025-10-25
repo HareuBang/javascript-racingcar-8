@@ -53,4 +53,11 @@ export class Race {
       if (this.#onRandomPickNumber() >= 4) car.forward();
     });
   }
+
+  getRaceProgress() {
+    return this.#participateCars.map((car) => ({
+      name: car.getName(),
+      distance: car.getDistance(),
+    }));
+  }
 }
