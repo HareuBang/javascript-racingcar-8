@@ -27,4 +27,5 @@ export const CAR = {
   },
 
   FORWARD_MIN_NUMBER_FOUR: 4,
+  DEFAULT_TYPE: "normal",
 };
