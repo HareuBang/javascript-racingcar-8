@@ -37,9 +37,9 @@ class Race {
 
   prepare(inputCarNames, inputLaps) {
     validateInputString(inputCarNames, SUBJECT.CAR_NAMES);
-    this.#validateInputLaps(inputLaps);
-
     this.#participateCars = this.#prepareCars(inputCarNames);
+
+    this.#validateInputLaps(inputLaps);
     this.#laps = Number(inputLaps);
   }
 
