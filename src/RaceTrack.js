@@ -43,7 +43,7 @@ class RaceTrack {
     if (process.env.NODE_ENV !== "test") this.#output.printScoreBoard();
 
     while (this.#race.runNextLaps()) {
-      this.#race.start();
+      this.#race.runLap();
       this.#renderExecutionResult();
     }
   }

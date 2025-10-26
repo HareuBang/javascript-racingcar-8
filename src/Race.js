@@ -48,7 +48,7 @@ class Race {
     return this.#laps >= LAPS.LAST_CONTINUE_ZERO;
   }
 
-  start() {
+  runLap() {
     this.#participateCars.forEach((car) => {
       if (this.#onRandomPickNumber() >= CAR.FORWARD_MIN_NUMBER_FOUR)
         car.forward();
