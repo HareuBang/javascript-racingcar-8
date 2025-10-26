@@ -1,8 +1,8 @@
 import {
   FORMAT_RACE_PROGRESS,
   WINNER_SEPARATOR,
-} from "../constants/constants.js";
-import { ERROR_PREFIX } from "../constants/errorMessage.js";
+} from "./constants/constants.js";
+import { ERROR_PREFIX } from "./constants/errorMessage.js";
 
 class RaceTrack {
   #input;

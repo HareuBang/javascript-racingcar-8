@@ -2,7 +2,7 @@ import inputView from "./console/inputView.js";
 import outputView from "./console/outputView.js";
 import CarFactory from "./model/CarFactory.js";
 import Race from "./model/Race.js";
-import RaceTrack from "./model/RaceTrack.js";
+import RaceTrack from "./RaceTrack.js";
 
 class App {
   async run() {
