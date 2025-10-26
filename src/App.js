@@ -7,7 +7,7 @@ class App {
   async run() {
     const race = new Race(CarFactory.create);
     const raceTrack = new RaceTrack(inputView, race, outputView);
-    raceTrack.race();
+    await raceTrack.race();
   }
 }
 
