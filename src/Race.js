@@ -15,9 +15,12 @@ class Race {
   }
 
   #validateInputLaps(inputLaps) {
+    const isInputLapsType =
+      typeof inputLaps !== VALID_TYPE.NUMBER &&
+      typeof inputLaps !== VALID_TYPE.STRING;
+
     if (
-      (typeof inputLaps !== VALID_TYPE.NUMBER &&
-        typeof inputLaps !== VALID_TYPE.STRING) ||
+      isInputLapsType ||
       !Number.isFinite(Number(inputLaps)) // NaN, Infinity, -Infinity 검증
     ) {
       throw new Error(LAPS_ERROR.NOT_NUMBER);
