@@ -2,6 +2,7 @@ import {
   FORMAT_RACE_PROGRESS,
   WINNER_SEPARATOR,
 } from "./constants/constants.js";
+import { ERROR_PREFIX } from "./constants/errorMessage.js";
 class RaceTrack {
   #input;
   #race;
@@ -42,8 +43,9 @@ class RaceTrack {
     try {
       this.#race.prepare(inputCarNames, inputRaceLaps);
     } catch (error) {
-      this.#output.printError(error.message);
-      throw error;
+      const errorMessage = ERROR_PREFIX + error.message;
+      this.#output.printError(errorMessage);
+      throw new Error(errorMessage);
     }
 
     // this.#output.printScoreBoard();
