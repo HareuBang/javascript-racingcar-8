@@ -43,3 +43,36 @@
 ### 예외 처리
 
 - [ ] 예외 발생 시 `[ERROR]`로 시작하는 메시지와 함께 `Error를 발생시킨 후` `애플리케이션을 종료`한다.
+
+<br>
+
+## 📁 프로젝트 구조
+
+```
+🏎️ racingcar/
+├── 📂 src/
+│   ├── 📂 console/
+│   │   ├── inputView.js              # 입력 처리 (Console API)
+│   │   └── outputView.js             # 출력 처리 (Console API)
+│   │
+│   ├── 📂 constants/
+│   │   ├── constants.js              # 프로그램에서 사용하는 상수
+│   │   ├── errorMessage.js           # 에러 메시지 상수
+│   │   └── message.js                # 입출력 메시지 상수
+│   │
+│   ├── 📂 model/
+│   │   ├── Car.js                    # 자동차 객체
+│   │   ├── CarFactory.js             # 자동차 객체를 생성하는 팩토리
+│   │   └── Race.js                   # 경주와 관련된 상태 및 동작을 관리하는 객체
+│   │
+│   ├── 📂 utils/
+│   │   └── randomPickNumber.js       # Random 숫자 생성 (Random API)
+│   │
+│   ├── 📂 validators/
+│   │   └── validateInputString.js    # 입력 문자열에 대한 공통 검증 (자동차 이름)
+│   │
+│   ├── App.js                        # 프로그램 실행 진입점
+│   └── index.js                      # 실행 스크립트
+│
+└── 📂 __tests__/                    # Jest 테스트 폴더
+```
