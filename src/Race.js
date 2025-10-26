@@ -2,6 +2,7 @@ import validateInputString from "./validators/validateInputString.js";
 import { VALID_TYPE, LAPS, SUBJECT, CAR } from "./constants/constants.js";
 import { LAPS_ERROR } from "./constants/errorMessage.js";
 import randomPickNumber from "./utils/randomPickNumber.js";
+
 class Race {
   #participateCars;
   #laps;
@@ -45,6 +46,7 @@ class Race {
 
   runNextLaps() {
     this.#laps -= LAPS.DECREASE_ONE;
+
     return this.#laps >= LAPS.LAST_CONTINUE_ZERO;
   }
 

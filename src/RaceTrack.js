@@ -3,6 +3,7 @@ import {
   WINNER_SEPARATOR,
 } from "./constants/constants.js";
 import { ERROR_PREFIX } from "./constants/errorMessage.js";
+
 class RaceTrack {
   #input;
   #race;
@@ -15,8 +16,8 @@ class RaceTrack {
   }
 
   #formatRaceProgress() {
-    const progress = this.#race.getRaceProgress();
     const { NAME_DISTANCE_SEPARATOR, DISTANCE_MARK } = FORMAT_RACE_PROGRESS;
+    const progress = this.#race.getRaceProgress();
 
     return progress
       .map(
@@ -59,6 +60,7 @@ class RaceTrack {
     } catch (error) {
       const errorMessage = ERROR_PREFIX + error.message;
       this.#output.printError(errorMessage);
+
       throw new Error(errorMessage);
     }
 
