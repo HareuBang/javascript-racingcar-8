@@ -1,6 +1,6 @@
-import validateInputString from "./validators/validateInputString.js";
-import { CAR } from "./constants/constants.js";
-import { CAR_NAME_ERRORS } from "./constants/errorMessage.js";
+import validateInputString from "../validators/validateInputString.js";
+import { CAR } from "../constants/constants.js";
+import { CAR_NAME_ERRORS } from "../constants/errorMessage.js";
 
 class Car {
   #name;

@@ -1,4 +1,4 @@
-import Race from "../src/Race.js";
+import Race from "../src/model/Race.js";
 import { SUBJECT } from "../src/constants/constants.js";
 import { CAR_NAME_ERRORS, LAPS_ERROR } from "../src/constants/errorMessage.js";
 
