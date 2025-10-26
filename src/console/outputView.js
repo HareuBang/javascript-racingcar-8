@@ -6,7 +6,8 @@ const print = (message) => MissionUtils.Console.print(message);
 const outputView = {
   printScoreBoard: () =>
     print(PRINT.NEWLINE_SEPARATOR + PRINT.EXECUTION_RESULT_TITLE),
-  printExecutionResult: (executionResult) => print(executionResult),
+  printExecutionResult: (executionResult) =>
+    print(executionResult + PRINT.NEWLINE_SEPARATOR),
   printWinner: (winner) => print(PRINT.WINNER_PREFIX + winner),
   printError: (errorMessage) => print(errorMessage),
 };

@@ -48,7 +48,9 @@ class RaceTrack {
       throw new Error(errorMessage);
     }
 
-    // this.#output.printScoreBoard();
+    // 실행 환경에서만 출력
+    if (process.env.NODE_ENV !== "test") this.#output.printScoreBoard();
+
     while (this.#race.runNextLaps()) {
       this.#race.start();
       this.#renderExecutionResult();
