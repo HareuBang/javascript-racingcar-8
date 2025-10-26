@@ -33,7 +33,7 @@ describe("Race", () => {
       expect(count).toBe(3);
     });
 
-    test("start(경주 시작) - 랜덤 값이 4 이상일 경우 자동차가 전진하는 지 확인한다.", () => {
+    test("runLap - 랜덤 값이 4 이상일 경우 자동차가 전진하는 지 확인한다.", () => {
       const mockCarFactory = jest.fn((name) => {
         let distance = 0;
 
@@ -56,7 +56,7 @@ describe("Race", () => {
 
       const cars = mockCarFactory.mock.results.map(({ value }) => value);
 
-      race.start();
+      race.runLap();
 
       expect(cars[0].getDistance()).toBe(0);
       expect(cars[1].getDistance()).toBe(1);
