@@ -41,9 +41,6 @@ class RaceTrack {
   }
 
   #runLaps() {
-    // 실행 환경에서만 "실행 결과" 출력
-    if (process.env.NODE_ENV !== "test") this.#output.printScoreBoard();
-
     while (this.#race.runNextLaps()) {
       this.#race.runLap();
       this.#renderExecutionResult();
@@ -64,6 +61,9 @@ class RaceTrack {
 
       throw new Error(errorMessage);
     }
+
+    // 실행 환경에서만 "실행 결과" 제목(Title) 출력
+    if (process.env.NODE_ENV !== "test") this.#output.printScoreBoard();
 
     this.#runLaps();
     this.#renderWinner();
