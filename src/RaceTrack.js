@@ -15,17 +15,14 @@ class RaceTrack {
 
   #formatRaceProgress() {
     const progress = this.#race.getRaceProgress();
-    const { NAME_DISTANCE_SEPARATOR, DISTANCE_MARK, NEWLINE_SEPARATOR } =
-      FORMAT_RACE_PROGRESS;
+    const { NAME_DISTANCE_SEPARATOR, DISTANCE_MARK } = FORMAT_RACE_PROGRESS;
 
-    return progress.reduce(
-      (formattedString, { name, distance }) =>
-        formattedString +
-        `${name} ${NAME_DISTANCE_SEPARATOR} ${DISTANCE_MARK.repeat(
-          distance
-        )}${NEWLINE_SEPARATOR}`,
-      ""
-    );
+    return progress
+      .map(
+        ({ name, distance }) =>
+          `${name} ${NAME_DISTANCE_SEPARATOR} ${DISTANCE_MARK.repeat(distance)}`
+      )
+      .join("\n");
   }
 
   #renderExecutionResult() {
@@ -49,7 +46,7 @@ class RaceTrack {
       throw error;
     }
 
-    this.#output.printScoreBoard();
+    // this.#output.printScoreBoard();
     while (this.#race.runNextLaps()) {
       this.#race.start();
       this.#renderExecutionResult();
