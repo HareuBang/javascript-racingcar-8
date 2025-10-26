@@ -31,31 +31,38 @@ class RaceTrack {
     this.#output.printExecutionResult(executionResult);
   }
 
-  #renderWinner() {
-    const winner = this.#race.determineWinner().join(WINNER_SEPARATOR);
-    this.#output.printWinner(winner);
-  }
-
-  async race() {
+  async #setupRace() {
     const inputCarNames = await this.#input.readCarNames();
     const inputRaceLaps = await this.#input.readRaceLaps();
 
-    try {
-      this.#race.prepare(inputCarNames, inputRaceLaps);
-    } catch (error) {
-      const errorMessage = ERROR_PREFIX + error.message;
-      this.#output.printError(errorMessage);
-      throw new Error(errorMessage);
-    }
+    this.#race.prepare(inputCarNames, inputRaceLaps);
+  }
 
-    // 실행 환경에서만 출력
+  #runLaps() {
+    // 실행 환경에서만 "실행 결과" 출력
     if (process.env.NODE_ENV !== "test") this.#output.printScoreBoard();
 
     while (this.#race.runNextLaps()) {
       this.#race.start();
       this.#renderExecutionResult();
     }
+  }
 
+  #renderWinner() {
+    const winner = this.#race.determineWinner().join(WINNER_SEPARATOR);
+    this.#output.printWinner(winner);
+  }
+
+  async race() {
+    try {
+      await this.#setupRace();
+    } catch (error) {
+      const errorMessage = ERROR_PREFIX + error.message;
+      this.#output.printError(errorMessage);
+      throw new Error(errorMessage);
+    }
+
+    this.#runLaps();
     this.#renderWinner();
   }
 }
