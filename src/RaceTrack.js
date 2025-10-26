@@ -16,15 +16,16 @@ class RaceTrack {
   }
 
   #formatRaceProgress() {
-    const { NAME_DISTANCE_SEPARATOR, DISTANCE_MARK } = FORMAT_RACE_PROGRESS;
     const progress = this.#race.getRaceProgress();
+    const { NAME_DISTANCE_SEPARATOR, DISTANCE_MARK, NEWLINE_SEPARATOR } =
+      FORMAT_RACE_PROGRESS;
 
     return progress
       .map(
         ({ name, distance }) =>
           `${name} ${NAME_DISTANCE_SEPARATOR} ${DISTANCE_MARK.repeat(distance)}`
       )
-      .join("\n");
+      .join(NEWLINE_SEPARATOR);
   }
 
   #renderExecutionResult() {

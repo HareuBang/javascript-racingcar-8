@@ -33,6 +33,7 @@ export const CAR = {
 export const FORMAT_RACE_PROGRESS = {
   NAME_DISTANCE_SEPARATOR: ":",
   DISTANCE_MARK: "-",
+  NEWLINE_SEPARATOR: "\n",
 };
 
 export const WINNER_SEPARATOR = ", ";
