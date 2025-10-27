@@ -72,6 +72,7 @@
 │   │   └── Race.js                   # 경주와 관련된 상태 및 동작을 관리하는 객체
 │   │
 │   ├── 📂 utils/
+│   │   ├── format.js                 # 출력에 필요한 문자열 포맷팅 로직 관리
 │   │   └── randomPickNumber.js       # Random 숫자 생성 (Random API)
 │   │
 │   ├── 📂 validators/
@@ -134,11 +135,21 @@ class outputView {
   + printWinner(winner)
   + printError(errorMessage)
 }
+class format {
+  + raceProgress(progress)
+  + winner(winner)
+  + errorMessage(error)
+}
+class randomPickNumber{
+  + randomPickNumber()
+}
 App --> RaceTrack : creates
 RaceTrack o--> Race
 RaceTrack o--> inputView
 RaceTrack o--> outputView
+RaceTrack o--> format
 Race o--> CarFactory
 Race o-- Car
+Race o--> randomPickNumber
 CarFactory --> Car : creates
 ```
