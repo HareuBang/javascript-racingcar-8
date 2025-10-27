@@ -3,7 +3,7 @@ import { VALID_TYPE, LAPS, SUBJECT, CAR } from "../constants/constants.js";
 import { LAPS_ERROR } from "../constants/errorMessage.js";
 import randomPickNumber from "../utils/randomPickNumber.js";
 
-class Race {
+export default class Race {
   #participateCars;
   #laps;
   #onCarFactory;
@@ -77,5 +77,3 @@ class Race {
     }, []);
   }
 }
-
-export default Race;

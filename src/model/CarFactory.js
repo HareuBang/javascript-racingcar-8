@@ -1,7 +1,7 @@
 import Car from "./Car.js";
 import { CAR } from "../constants/constants.js";
 
-class CarFactory {
+export default class CarFactory {
   static #createCar(name) {
     return new Car(name);
   }
@@ -14,5 +14,3 @@ class CarFactory {
     return carType[type](name);
   }
 }
-
-export default CarFactory;
