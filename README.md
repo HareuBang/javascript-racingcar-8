@@ -51,6 +51,12 @@
 ```
 🏎️ racingcar/
 ├── 📂 src/
+│   ├── 📂 __tests__/                 # Jest 테스트 폴더
+│   │   ├── ApplicationTest.js
+│   │   ├── CarFactoryTest.js
+│   │   ├── CarTest.js
+│   │   └── RaceTest.js
+│   │
 │   ├── 📂 console/
 │   │   ├── inputView.js              # 입력 처리 (Console API)
 │   │   └── outputView.js             # 출력 처리 (Console API)
@@ -72,9 +78,8 @@
 │   │   └── validateInputString.js    # 입력 문자열에 대한 공통 검증 (자동차 이름)
 │   │
 │   ├── App.js                        # 프로그램 실행 진입점
-│   └── index.js                      # 실행 스크립트
-│
-└── 📂 __tests__/                    # Jest 테스트 폴더
+│   ├── index.js                      # 실행 스크립트
+│   └── RaceTrack.js                  # 경주 진행 흐름 제어
 ```
 
 <br>
