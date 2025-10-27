@@ -4,45 +4,45 @@
 
 ### 입력
 
-- [ ] 사용자로부터 경주에 참가할 자동차 이름을 입력받는다.
+- [x] 사용자로부터 경주에 참가할 자동차 이름을 입력받는다.
 
   - 자동차 이름은 쉼표(,)를 기준으로 구분한다.
   - 이름은 5자 이하만 가능하다.
 
-- [ ] 사용자로부터 시도할 횟수를 입력받는다.
+- [x] 사용자로부터 시도할 횟수를 입력받는다.
 
 ### 경주 준비
 
-- [ ] 입력받은 자동차 이름들을 기준으로 자동차(Car) 인스턴스를 생성한다. (참가 목록)
-- [ ] 입력받은 횟수를 설정한다.
+- [x] 입력받은 자동차 이름들을 기준으로 자동차(Car) 인스턴스를 생성한다. (참가할 자동차)
+- [x] 입력받은 횟수를 설정한다.
 
 ### 경주 시작
 
-- [ ] 주어진 횟수동안 경주를 진행한다.
+- [x] 주어진 횟수동안 경주를 진행한다.
 
 - 각 횟수마다 다음을 실행한다.
 
-  - [ ] 0 ~ 9 사이의 무작위 값을 생성한다.
-  - [ ] 무자위 값이 4 이상일 경우 자동차를 전진한다.
+  - [x] 0 ~ 9 사이의 무작위 값을 생성한다.
+  - [x] 무자위 값이 4 이상일 경우 자동차를 전진한다.
 
-- [ ] 각 경주 종료 후 모든 자동차들의 이동거리를 출력한다.
+- [x] 각 횟수마다 모든 자동차들의 이동거리를 출력한다.
 
   - 이동거리는 `-`로 표시한다.
   - 자동차 이름: --
 
 ### 경주 종료
 
-- [ ] 주어진 횟수가 끝나면 우승자를 식별한다.
+- [x] 주어진 횟수가 끝나면 우승자를 식별한다.
 
-  - 가장 많이 전진한 자동차가 우승자가 된다.
+  - 가장 멀리 전진한 자동차가 우승자가 된다.
 
-- [ ] 우승자를 출력한다.
+- [x] 우승자를 출력한다.
 
   - 우승자가 여러 명일 경우 ,(쉼표)를 기준으로 구분한다.
 
 ### 예외 처리
 
-- [ ] 예외 발생 시 `[ERROR]`로 시작하는 메시지와 함께 `Error를 발생시킨 후` `애플리케이션을 종료`한다.
+- [x] 예외 발생 시 `[ERROR]`로 시작하는 메시지와 함께 `Error를 발생시킨 후` `애플리케이션을 종료`한다.
 
 <br>
 
@@ -75,4 +75,65 @@
 │   └── index.js                      # 실행 스크립트
 │
 └── 📂 __tests__/                    # Jest 테스트 폴더
+```
+
+<br>
+
+## 🧱 클래스 다이어그램
+
+```mermaid
+classDiagram
+class App {
+    + run()
+}
+class RaceTrack {
+  - race
+  - input
+  - output
+  - formatRaceProgress()
+  - renderExecutionResult()
+  - setupRace()
+  - runLaps()
+  - renderWinner()
+  + race()
+}
+class Race {
+  - participateCars
+  - laps
+  - onCarFactory
+  - onRandomPickNumber
+  - prepareCars(inputCarNames)
+  + prepare(inputCarNames, inputLaps)
+  + runNextLaps()
+  + runLap()
+  + getRaceProgress()
+  + determineWinner()
+}
+class CarFactory {
+  - static createCar(name)
+  + static create(name, type)
+}
+class Car {
+  - name
+  - distance
+  + forward()
+  + getName()
+  + getDistance()
+}
+class inputView {
+  + readCarNames()
+  + readRaceLaps()
+}
+class outputView {
+  + printExecutionResult(executionResult)
+  + printWinner(winner)
+  + printError(errorMessage)
+}
+App --> RaceTrack : creates
+RaceTrack o--> Race
+RaceTrack o--> inputView
+RaceTrack o--> outputView
+Race o--> CarFactory
+Race o-- Car
+CarFactory --> Car : creates
 ```
