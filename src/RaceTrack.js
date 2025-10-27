@@ -11,15 +11,10 @@ class RaceTrack {
     this.#format = format;
   }
 
-  #formatRaceProgress() {
-    const progress = this.#race.getRaceProgress();
-
-    return this.#format.raceProgress(progress);
-  }
-
   #renderExecutionResult() {
-    const executionResult = this.#formatRaceProgress();
-    this.#output.printExecutionResult(executionResult);
+    const progress = this.#race.getRaceProgress();
+    const formattedProgress = this.#format.raceProgress(progress);
+    this.#output.printExecutionResult(formattedProgress);
   }
 
   async #setupRace() {

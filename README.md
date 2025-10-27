@@ -96,7 +96,7 @@ class RaceTrack {
   - race
   - input
   - output
-  - formatRaceProgress()
+  - format
   - renderExecutionResult()
   - setupRace()
   - runLaps()
